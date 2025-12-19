@@ -1,0 +1,23 @@
+name: Print Software Versions
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  # Перша робота: рівень обробки даних (Node.js)
+  PrintLanguageVersions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Node.js Version
+        [cite_start]run: node --version # Вивід версії Node.js відповідно до схеми [cite: 204]
+      - name: Print NPM Version
+        run: npm --version
+
+  # Друга робота: рівень доступу до даних (MongoDB)
+  PrintDBMSVersions:
+    runs-on: ubuntu-latest
+    [cite_start]needs: [PrintLanguageVersions] # Друга робота залежить від першої [cite: 117, 205]
+    steps:
+      - name: Print MongoDB Version
+        [cite_start]run: mongod --version # Вивід версії MongoDB відповідно до схеми [cite: 205]
